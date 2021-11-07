@@ -1,0 +1,57 @@
+import React, { useState } from "react";
+import "./Homepage.scss";
+
+var url = "";
+chrome.tabs.query(
+  {
+    active: true,
+    url: "https://meet.google.com/*",
+  },
+  (tabs) => {
+    console.log(tabs);
+    url = tabs[0].url;
+  }
+);
+
+const Homepage = ({ socket }) => {
+  const [name, setName] = useState();
+  const joinRoom = () => {
+    // const callbackFunction = (response) => {
+    //   console.log(response);
+    // };
+    // sendMessage({ type: "GET_PARTICIPANTS" }, callbackFunction);
+    socket.emit(
+      "joinRoom",
+      url.substring(
+        url.lastIndexOf("/") + 1,
+        url.indexOf("?") === -1 ? url.length : url.indexOf("?")
+      ),
+      name
+    );
+  };
+
+  return (
+    <div className="homepage">
+      <div className="content">
+        <input
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          value={name}
+          name="user_name"
+          placeholder="Enter your name"
+        />
+        <button
+          onClick={() => {
+            joinRoom();
+          }}
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Homepage;
