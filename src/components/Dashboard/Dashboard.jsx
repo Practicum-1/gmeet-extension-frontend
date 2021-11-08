@@ -8,19 +8,12 @@ chrome.tabs.query(
     url: "https://meet.google.com/*",
   },
   (tabs) => {
-    console.log(tabs);
     url = tabs[0].url;
   }
 );
 
-const Dashboard = ({ roomInfo }) => {
-  return (
-    <div className="dashboard">
-      {roomInfo.map((user) => (
-        <li>{user}</li>
-      ))}
-    </div>
-  );
+const Dashboard = () => {
+  return <div className="dashboard">dashboard</div>;
 };
 
 export default Dashboard;

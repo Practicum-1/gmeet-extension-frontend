@@ -8,7 +8,6 @@ chrome.tabs.query(
     url: "https://meet.google.com/*",
   },
   (tabs) => {
-    console.log(tabs);
     url = tabs[0].url;
   }
 );
