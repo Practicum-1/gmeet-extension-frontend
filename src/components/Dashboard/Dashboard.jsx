@@ -12,8 +12,18 @@ chrome.tabs.query(
   }
 );
 
-const Dashboard = () => {
-  return <div className="dashboard">dashboard</div>;
+const Dashboard = ({ polls, socket }) => {
+  return (
+    <div className="dashboard">
+      dashboard
+      <br></br>
+      <ul>
+        {polls.map((poll) => {
+          return <li> {JSON.stringify(poll)} </li>;
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export default Dashboard;

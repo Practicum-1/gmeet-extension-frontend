@@ -2,13 +2,13 @@ import React from "react";
 import { socket } from "../../customHooks/useSockets";
 import "./Participants.scss";
 
-const Participants = ({ roomInfo }) => {
-  console.log(roomInfo);
+const Participants = ({ participants }) => {
+  console.log(participants);
   return (
     <div className="participants">
       <h4>participants</h4>
       <ul>
-        {roomInfo.participants.map((participant, index) => {
+        {participants.map((participant, index) => {
           return (
             <li key={index}>
               {participant.displayName}
