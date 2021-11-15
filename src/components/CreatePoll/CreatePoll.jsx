@@ -8,7 +8,6 @@ const CreatePoll = ({ socket, roomName }) => {
   const [options, setOptions] = useState({});
 
   const sendPoll = () => {
-    console.log("ujjwal", options);
     socket.emit("insertPoll", roomName, {
       text: pollingQuestion,
       total_votes: 0,
@@ -20,6 +19,9 @@ const CreatePoll = ({ socket, roomName }) => {
       createdBy: socket.id,
       createdAt: Date.now(),
     });
+
+    setOptions({});
+    setPollingQuestion("");
   };
 
   const handleOption = async (e, i, selectedOption) => {

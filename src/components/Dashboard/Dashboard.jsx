@@ -14,14 +14,36 @@ chrome.tabs.query(
 
 const Dashboard = ({ polls, socket }) => {
   return (
-    <div className="dashboard">
-      dashboard
-      <br></br>
-      <ul>
-        {polls.map((poll) => {
-          return <li> {JSON.stringify(poll)} </li>;
-        })}
-      </ul>
+    <div className="dashboard ">
+      <div className="heading pt-3">dashboard</div>
+      <div className="all-question">
+        {polls.map((poll) => (
+          <>
+            <div className="quiz-container" id="quiz">
+              <div className="quiz-header">
+                <h2 id="questions">{poll.text}</h2>
+                <ul>
+                  {poll.options.map((option, index) => (
+                    <li>
+                      <input
+                        type="radio"
+                        name={option.createdAt}
+                        className="mx-2"
+                      />
+                      {option.option}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="">
+                <button type="button" id="button">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   );
 };
