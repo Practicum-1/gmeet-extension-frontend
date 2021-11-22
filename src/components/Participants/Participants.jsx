@@ -6,25 +6,22 @@ const Participants = ({ participants }) => {
   console.log(participants);
   return (
     <>
-      <div class="list-wrapper">
-        <h4>participants</h4>
-        <ul class="list">
+      <div className="list-wrapper">
+        <div className="heading pt-3">Participants</div>
+        <ul className="list">
           {participants.map((participant, index) => {
             return (
-              <li class="list-item" key={index}>
+              <li className="list-item" key={index}>
                 <div>
-                  <img
-                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg"
-                    class="list-item-image"
-                  />
+                  <i className="fas fa-user list-item-image" />
                 </div>
-                <div class="list-item-content">
+                <div className="list-item-content">
                   <h4>
                     {" "}
                     {participant.displayName}{" "}
                     {participant.user_id === socket.id ? ` (You)` : ``}
                   </h4>
-                  <p>@hk-skit</p>
+                  {/* <p>@hk-skit</p> */}
                 </div>
               </li>
             );

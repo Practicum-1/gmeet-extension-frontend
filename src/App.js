@@ -24,6 +24,9 @@ function App() {
   const [participants, setParticipants] = useState([]);
   const [polls, setPolls] = useState([]);
   const [roomName, setRoomName] = useState("");
+  const [selectedOption, setSelectedOption] = useState({});
+  const [submittedQuestion, setSubmittedQuestion] = useState([]);
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     socket.on("connect", function () {
@@ -50,7 +53,18 @@ function App() {
       <Sidebar page={page} setPage={setPage} off={page} />
       {page === 0 ? <Homepage socket={socket} /> : ""}
       {page === 1 ? (
-        <Dashboard polls={polls} participants={participants} socket={socket} />
+        <Dashboard
+          polls={polls}
+          participants={participants}
+          socket={socket}
+          roomName={roomName}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          submittedQuestion={submittedQuestion}
+          setSubmittedQuestion={setSubmittedQuestion}
+          result={result}
+          setResult={setResult}
+        />
       ) : (
         ""
       )}

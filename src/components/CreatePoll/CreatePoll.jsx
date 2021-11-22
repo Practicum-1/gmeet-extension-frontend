@@ -3,14 +3,14 @@ import { Socket } from "socket.io";
 import "./CreatePoll.scss";
 
 const CreatePoll = ({ socket, roomName }) => {
-  const [numOfOption, setNumOfOption] = useState(0);
+  const [numOfOption, setNumOfOption] = useState();
   const [pollingQuestion, setPollingQuestion] = useState();
   const [options, setOptions] = useState({});
 
   const sendPoll = () => {
     socket.emit("insertPoll", roomName, {
       text: pollingQuestion,
-      total_votes: 0,
+      total_votes: [],
       // options: [
       //   { option: "option A", votes: [] },
       //   { option: "option B", votes: [] },
@@ -20,6 +20,7 @@ const CreatePoll = ({ socket, roomName }) => {
       createdAt: Date.now(),
     });
 
+    setNumOfOption(0);
     setOptions({});
     setPollingQuestion("");
   };
@@ -49,8 +50,10 @@ const CreatePoll = ({ socket, roomName }) => {
           className="form-control form-control-alternative"
           type="number"
           placeholder="Enter number of options"
+          value={numOfOption}
           min={0}
           onChange={(e) => {
+            setOptions({});
             setNumOfOption(parseInt(e.currentTarget.value, 10));
           }}
         ></input>
@@ -66,6 +69,7 @@ const CreatePoll = ({ socket, roomName }) => {
                 className="form-control form-control-alternative text-dark"
                 placeholder={`Enter option ${index + 1}`}
                 rows="2"
+                value={!!options[index]?.option ? options[index]?.option : ""}
                 onChange={(e) =>
                   handleOption(e, index, {
                     option: e.target.value,
@@ -78,7 +82,7 @@ const CreatePoll = ({ socket, roomName }) => {
       </div>
       {numOfOption > 0 && (
         <button
-          className="accept"
+          className="create"
           onClick={() => {
             sendPoll();
           }}

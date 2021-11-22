@@ -3,10 +3,19 @@ $main-background: #5b9eed;
 $white: #fff;
 $white-two: #aaa;
 
-.list-wrapper {
-  //   max-width: 80vw;
-  margin: 50px auto;
+.heading {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  text-transform: capitalize;
+  color: midnightblue;
+  min-height: 40px;
 }
+
+// .list-wrapper {
+//   //   max-width: 80vw;
+//   margin: 50px auto;
+// }
 
 .list {
   display: flex;
@@ -28,9 +37,13 @@ $white-two: #aaa;
     border-bottom: none;
     justify-content: start;
   }
+
   &-image {
     border-radius: 50%;
-    width: 64px;
+    // width: 164px;
+    border: 1px solid black;
+    padding: 10px 12px;
+    font-size: 35px;
   }
   &-content {
     margin-left: 20px;
