@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import CreatePoll from "./components/CreatePoll/CreatePoll";
 import Participants from "./components/Participants/Participants";
 
+//
 var url = "";
 chrome.tabs.query(
   {
@@ -18,6 +19,7 @@ chrome.tabs.query(
     url = tabs[0].url;
   }
 );
+// this snippet helps in extracting url from the current tab
 
 function App() {
   const [page, setPage] = useState(0);
@@ -34,6 +36,7 @@ function App() {
     });
   }, []);
 
+  // this socket event receives the room information at the time of joining the room
   socket.on("roomInfo", (data) => {
     setParticipants(data.participants);
     setRoomName(data.roomName);
@@ -43,11 +46,13 @@ function App() {
     }
   });
 
+  // this socket event receives the poll information at the time of creating a poll
   socket.on("pollAdded", (data) => {
     console.log("pole received", data);
     setPolls(data);
   });
 
+  // this is the structure of the data that is sent to the server
   return (
     <div className="App">
       <Sidebar page={page} setPage={setPage} off={page} />

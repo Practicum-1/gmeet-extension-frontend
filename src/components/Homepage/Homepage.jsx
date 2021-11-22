@@ -15,10 +15,7 @@ chrome.tabs.query(
 const Homepage = ({ socket }) => {
   const [name, setName] = useState();
   const joinRoom = () => {
-    // const callbackFunction = (response) => {
-    //   console.log(response);
-    // };
-    // sendMessage({ type: "GET_PARTICIPANTS" }, callbackFunction);
+    // this event is sent to the background script to join the room and get the participants
     socket.emit(
       "joinRoom",
       url.substring(

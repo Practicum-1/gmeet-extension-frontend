@@ -7,6 +7,7 @@ const CreatePoll = ({ socket, roomName }) => {
   const [pollingQuestion, setPollingQuestion] = useState();
   const [options, setOptions] = useState({});
 
+  // this event is triggered when the user clicks the create poll button in the room page and sends the number of options to the background script.
   const sendPoll = () => {
     socket.emit("insertPoll", roomName, {
       text: pollingQuestion,

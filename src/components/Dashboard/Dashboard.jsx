@@ -50,11 +50,13 @@ const Dashboard = ({
       selectedOption[quesIndex].optionIndex
     );
   };
+  // this event is triggered when the user clicks on the submit button in the poll page of the room and sends the selected option to the background script.
 
   socket.on("voterAdded", (data) => {
     console.log("voter data", data);
     setResult(data);
   });
+  // this event is triggered when the background script sends the result of the poll to the frontend.
 
   return (
     <div className="dashboard ">
