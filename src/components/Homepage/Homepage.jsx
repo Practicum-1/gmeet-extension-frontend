@@ -12,10 +12,13 @@ chrome.tabs.query(
   }
 );
 
-const Homepage = ({ socket }) => {
+const Homepage = ({ socket, connected }) => {
   const [name, setName] = useState();
+  const [joining, setJoining] = useState(false);
+
   const joinRoom = () => {
     // this event is sent to the background script to join the room and get the participants
+    setJoining(true);
     socket.emit(
       "joinRoom",
       url.substring(
@@ -39,12 +42,16 @@ const Homepage = ({ socket }) => {
           placeholder="Enter your name"
         />
         <button
+          disabled={joining || !connected}
           onClick={() => {
-            joinRoom();
+            if (!joining && connected) {
+              joinRoom();
+            }
           }}
         >
           Join Room
         </button>
+        {!connected ? <div>Connecting to Server ...</div> : <></>}
       </div>
     </div>
   );

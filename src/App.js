@@ -23,6 +23,7 @@ chrome.tabs.query(
 
 function App() {
   const [page, setPage] = useState(0);
+  const [connected, setConnected] = useState(false);
   const [participants, setParticipants] = useState([]);
   const [polls, setPolls] = useState([]);
   const [roomName, setRoomName] = useState("");
@@ -32,9 +33,11 @@ function App() {
 
   useEffect(() => {
     socket.on("connect", function () {
+      setConnected(true);
       console.log("You are now connected  ");
     });
   }, []);
+  console.log(socket.id);
 
   // this socket event receives the room information at the time of joining the room
   socket.on("roomInfo", (data) => {
@@ -56,7 +59,7 @@ function App() {
   return (
     <div className="App">
       <Sidebar page={page} setPage={setPage} off={page} />
-      {page === 0 ? <Homepage socket={socket} /> : ""}
+      {page === 0 ? <Homepage socket={socket} connected={connected} /> : ""}
       {page === 1 ? (
         <Dashboard
           polls={polls}
