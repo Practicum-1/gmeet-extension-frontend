@@ -16,6 +16,7 @@ const Dashboard = ({
   polls,
   socket,
   roomName,
+  participants,
   selectedOption,
   setSelectedOption,
   submittedQuestion,
@@ -70,7 +71,17 @@ const Dashboard = ({
             <>
               <div className="quiz-container" id="quiz">
                 <div className="quiz-header">
-                  <h2 id="questions">{poll.text}</h2>
+                  <div className="poll-header">
+                    <h2 id="questions">{poll.text}</h2>
+                    <h6>
+                      by&nbsp;
+                      {participants.map((participant) => {
+                        if (participant.user_id === poll.createdBy) {
+                          return participant.displayName;
+                        }
+                      })}
+                    </h6>
+                  </div>
                   <ul>
                     {poll.options.map((option, optionIndex) => {
                       const optionVotes =
