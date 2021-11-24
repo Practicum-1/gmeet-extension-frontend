@@ -25,6 +25,7 @@ function App() {
   const [page, setPage] = useState(0);
   const [connected, setConnected] = useState(false);
   const [participants, setParticipants] = useState([]);
+  const [inactiveUsers, setInactiveUsers] = useState([]);
   const [polls, setPolls] = useState([]);
   const [roomName, setRoomName] = useState("");
   const [selectedOption, setSelectedOption] = useState({});
@@ -36,18 +37,20 @@ function App() {
       setConnected(true);
       console.log("You are now connected  ");
     });
+    socket.on("roomInfo", (data) => {
+      console.log(data);
+      setParticipants(data.participants);
+      setInactiveUsers(data.inactiveUsers);
+      setRoomName(data.roomName);
+      setPolls(data.polls);
+      if (page === 0) {
+        setPage(1);
+      }
+    });
   }, []);
   console.log(socket.id);
 
   // this socket event receives the room information at the time of joining the room
-  socket.on("roomInfo", (data) => {
-    setParticipants(data.participants);
-    setRoomName(data.roomName);
-    setPolls(data.polls);
-    if (page === 0) {
-      setPage(1);
-    }
-  });
 
   // this socket event receives the poll information at the time of creating a poll
   socket.on("pollAdded", (data) => {

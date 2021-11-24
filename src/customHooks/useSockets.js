@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 
 export const socket = io("http://gmeet-extension.herokuapp.com", {
+  // export const socket = io("http://localhost:8000", {
   transports: ["websocket", "polling"],
 });
 
