@@ -24,6 +24,9 @@
     }
   }
   .quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 460px;
     max-width: 100%;
     border-radius: 5px;
@@ -52,11 +55,11 @@
   li label {
     padding-left: 8px;
   }
-  #questions {
+  .questions {
     margin: 0;
     padding: 0 0 15px 0;
   }
-  button {
+  .sub-button {
     width: 60%;
     border: none;
     padding: 5px 10px;
@@ -66,10 +69,37 @@
     transition: 0.5s;
     border-radius: 0 0 5px 5px;
   }
-  button:hover {
+  .sub-button:hover {
     background-color: #850628;
   }
   input[type="radio"] {
     cursor: pointer;
+  }
+}
+
+.student-result-container {
+  max-height: 120px;
+  overflow: auto;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
+  padding: 10px 20px;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f6f6f6;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #5e72e4;
+  }
+
+  .result-heading {
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
   }
 }

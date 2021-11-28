@@ -32,10 +32,16 @@ $white-two: #aaa;
   padding-bottom: 5px;
   padding-top: 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
+  width: 100%;
+  max-width: 183px;
   &:last-child {
     border-bottom: none;
     justify-content: start;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 135px;
   }
 
   &-image {

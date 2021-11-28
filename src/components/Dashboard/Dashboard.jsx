@@ -72,7 +72,7 @@ const Dashboard = ({
               <div className="quiz-container" id="quiz">
                 <div className="quiz-header">
                   <div className="poll-header">
-                    <h2 id="questions">{poll.text}</h2>
+                    <h2 className="questions">{poll.text}</h2>
                     <h6>
                       by&nbsp;
                       {participants.map((participant) => {
@@ -136,12 +136,46 @@ const Dashboard = ({
                     })}
                   </ul>
                 </div>
-                {!!submittedQuestion.length && isSubmitted ? null : (
+                {!!submittedQuestion.length && isSubmitted ? (
+                  <>
+                    {poll.createdBy === socket.id && (
+                      <div class="student-result-container">
+                        <h3 className="result-heading">Result</h3>
+                        <ul>
+                          {result[quesIndex]?.total_votes.map((voterId) => {
+                            return (
+                              <li className="d-flex justify-content-between">
+                                <div>
+                                  {participants.map((participant) => {
+                                    if (participant.user_id === voterId) {
+                                      return participant.displayName;
+                                    }
+                                  })}
+                                </div>
+                                <div>
+                                  {result[quesIndex]?.options.map((opt, i) => {
+                                    if (
+                                      opt.votes.some((el) => el === voterId)
+                                    ) {
+                                      // return opt.option;
+                                      return `Option ${i + 1}`;
+                                    }
+                                  })}
+                                </div>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    )}
+                  </>
+                ) : (
                   <>
                     <div className="">
                       <button
                         onClick={() => handleSubmit(quesIndex)}
                         type="button"
+                        className="sub-button"
                         id="button"
                       >
                         Submit
