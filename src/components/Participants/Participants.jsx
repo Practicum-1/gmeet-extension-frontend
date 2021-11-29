@@ -2,8 +2,7 @@ import React from "react";
 import { socket } from "../../customHooks/useSockets";
 import "./Participants.scss";
 
-const Participants = ({ participants }) => {
-  console.log(participants);
+const Participants = ({ participants, inactiveUsers }) => {
   return (
     <>
       <div className="list-wrapper">
@@ -16,31 +15,23 @@ const Participants = ({ participants }) => {
                   <i className="fas fa-user list-item-image" />
                 </div>
                 <div className="list-item-content">
-                  <h4>
-                    {" "}
+                  <div>
                     {participant.displayName}{" "}
                     {participant.user_id === socket.id ? ` (You)` : ``}
-                  </h4>
-                  {/* <p>@hk-skit</p> */}
+                  </div>
+                  <div>
+                    {inactiveUsers.some((el) => el === participant.user_id) ? (
+                      <div className="dot" style={{ background: "red" }} />
+                    ) : (
+                      <div className="dot " style={{ background: "green" }} />
+                    )}
+                  </div>
                 </div>
               </li>
             );
           })}
         </ul>
       </div>
-      {/* <div className="participants">
-      <h4>participants</h4>
-      <ul>
-        {participants.map((participant, index) => {
-          return (
-            <li key={index}>
-              {participant.displayName}
-              {participant.user_id === socket.id ? ` (You)` : ``}
-            </li>
-          );
-        })}
-      </ul>
-    </div> */}
     </>
   );
 };

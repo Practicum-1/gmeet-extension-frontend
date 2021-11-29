@@ -65,5 +65,11 @@ $white-two: #aaa;
       margin-top: 5px;
       color: $white-two;
     }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
   }
 }

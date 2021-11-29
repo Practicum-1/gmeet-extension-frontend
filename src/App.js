@@ -81,7 +81,11 @@ function App() {
       )}
       {page === 2 ? <CreatePoll socket={socket} roomName={roomName} /> : ""}
       {page === 3 ? (
-        <Participants participants={participants} socket={socket} />
+        <Participants
+          participants={participants}
+          socket={socket}
+          inactiveUsers={inactiveUsers}
+        />
       ) : (
         ""
       )}
