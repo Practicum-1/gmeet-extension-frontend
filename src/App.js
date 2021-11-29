@@ -47,6 +47,13 @@ function App() {
         setPage(1);
       }
     });
+    socket.on("roomInfoUpdationAtIntervals", (data) => {
+      console.log(data);
+      setParticipants(data.participants);
+      setInactiveUsers(data.inactiveUsers);
+      setRoomName(data.roomName);
+      setPolls(data.polls);
+    });
   }, []);
   console.log(socket.id);
 
