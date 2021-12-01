@@ -6,14 +6,22 @@ $green-lt: lighten($green, 10%);
 $green-dk: darken($green, 10%);
 
 .homepage {
+  // background-size: cover;
+  // background-image: -webkit-linear-gradient(
+  //   0deg,
+  //   rgb(94, 44, 237) 0%,
+  //   rgb(164, 133, 253) 100%
+  // );
+  // font-family: "Lato", sans-serif;
+  // min-height: 100vh;
+
   background-size: cover;
-  background-image: -webkit-linear-gradient(
-    0deg,
-    rgb(94, 44, 237) 0%,
-    rgb(164, 133, 253) 100%
-  );
+  //     background-image: -webkit-linear-gradient(
+  // 0deg,#5e2ced,#a485fd);
   font-family: "Lato", sans-serif;
   min-height: 100vh;
+  background-color: #55efc4;
+  background-image: linear-gradient(315deg, #55efc4 0%, #000000 74%);
 }
 
 form {
